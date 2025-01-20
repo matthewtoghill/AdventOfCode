@@ -1,0 +1,3 @@
+[submodule "Data/advent-of-code-inputs"]
+	path = Data/advent-of-code-inputs
+	url = https://github.com/matthewtoghill/advent-of-code-inputs

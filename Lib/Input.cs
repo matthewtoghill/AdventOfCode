@@ -2,8 +2,8 @@
 
 internal class Input(int year, int day)
 {
-    public string ReadAll() => File.ReadAllText(@$"..\..\..\data\{year}\day{day:00}.txt");
-    public string[] ReadAllLines() => File.ReadAllLines(@$"..\..\..\data\{year}\day{day:00}.txt");
+    public string ReadAll() => File.ReadAllText(@$"..\..\..\data\advent-of-code-inputs\{year}\day{day:00}.txt");
+    public string[] ReadAllLines() => File.ReadAllLines(@$"..\..\..\data\advent-of-code-inputs\{year}\day{day:00}.txt");
 
     public IEnumerable<T> ReadAllLinesTo<T>(StringSplitOptions splitOptions = StringSplitOptions.RemoveEmptyEntries) where T : IParsable<T>
         => ReadAll().SplitLines(splitOptions)
