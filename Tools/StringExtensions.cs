@@ -248,6 +248,8 @@ public static partial class StringExtensions
     }
 
     public static int ToInt(this char c) => c - '0';
+    public static int BinaryToInt(this string binary) => Convert.ToInt32(binary, 2);
+    public static long BinaryToLong(this string binary) => Convert.ToInt64(binary, 2);
 
     public static bool IsNullOrWhiteSpace(this string text) => string.IsNullOrWhiteSpace(text);
     public static bool IsNotNullOrWhiteSpace(this string text) => !string.IsNullOrWhiteSpace(text);
