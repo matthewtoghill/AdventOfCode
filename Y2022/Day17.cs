@@ -87,6 +87,7 @@ internal class Day17() : Solver(2022, 17)
             1 => [new(4, height + 4), new(3, height + 5), new(4, height + 5), new(5, height + 5), new(4, height + 6)],
             2 => [new(3, height + 4), new(4, height + 4), new(5, height + 4), new(5, height + 5), new(5, height + 6)],
             3 => [new(3, height + 4), new(3, height + 5), new(3, height + 6), new(3, height + 7)],
-            4 => [new(3, height + 4), new(4, height + 4), new(3, height + 5), new(4, height + 5)]
+            4 => [new(3, height + 4), new(4, height + 4), new(3, height + 5), new(4, height + 5)],
+            _ => throw new NotSupportedException()
         };
 }

@@ -33,7 +33,8 @@ internal class Day25() : Solver(2022, 25)
             '1' => 1,
             '0' => 0,
             '-' => -1,
-            '=' => -2
+            '=' => -2,
+            _ => throw new NotSupportedException()
         };
 
     private static char DecimalToSnafuDigit(long d)
@@ -43,6 +44,7 @@ internal class Day25() : Solver(2022, 25)
             1 => '1',
             0 => '0',
             -1 => '-',
-            -2 => '='
+            -2 => '=',
+            _ => throw new NotSupportedException()
         };
 }
