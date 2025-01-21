@@ -24,7 +24,7 @@ internal class Day18() : Solver(2024, 18)
         var end = new Position(70, 70);
 
         PriorityQueue<Position, int> queue = new([(start, 0)]);
-        Dictionary<Position, int> positionMinSteps = [];
+        DefaultDictionary<Position, int> positionMinSteps = new(defaultValue: int.MaxValue);
 
         minSteps = 0;
         bool canExit = false;
@@ -42,8 +42,6 @@ internal class Day18() : Solver(2024, 18)
             {
                 if (corruptedBytes.Contains(neighbour)) continue;
                 if (!neighbour.IsBetween(start, end)) continue;
-
-                positionMinSteps.TryAdd(neighbour, int.MaxValue);
 
                 if (positionMinSteps[neighbour] > steps + 1)
                 {

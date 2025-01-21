@@ -11,7 +11,7 @@ internal class Day11() : Solver(2024, 11)
 
     private static long Solve(string input, int iterations)
     {
-        var stones = input.ExtractNumeric<long>().CountBy(x => x).ToDictionary(x => x.Key, x => (long)x.Value);
+        var stones = input.ExtractNumeric<long>().GetFrequenciesAsLong();
 
         for (int i = 0; i < iterations; i++)
         {

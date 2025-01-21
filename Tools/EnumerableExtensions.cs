@@ -50,6 +50,9 @@ public static class EnumerableExtensions
     public static Dictionary<T, int> GetFrequencies<T>(this IEnumerable<T> items) where T : notnull
         => items.CountBy(x => x).ToDictionary();
 
+    public static Dictionary<T, long> GetFrequenciesAsLong<T>(this IEnumerable<T> items) where T : notnull
+        => items.CountBy(x => x).ToDictionary(x => x.Key, x => (long)x.Value);
+
     public static int Sum<T>(this IEnumerable<T> items, Func<T, int, int> selector)
         => items.Select(selector).Sum();
 

@@ -1,10 +1,11 @@
-﻿using System.Text;
-using AdventOfCode.Tools.Models;
+﻿using AdventOfCode.Tools.Models;
 
 namespace AdventOfCode.Y2024;
 
 internal class Day14() : Solver(2024, 14)
 {
+    private record Robot(Position Position, Position Velocity);
+
     private const int MapWidth = 101;
     private const int MapHeight = 103;
 
@@ -87,5 +88,3 @@ internal class Day14() : Solver(2024, 14)
     //    }
     //}
 }
-
-internal record Robot(Position Position, Position Velocity);

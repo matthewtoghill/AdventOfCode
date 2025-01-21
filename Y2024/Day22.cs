@@ -47,7 +47,7 @@ internal class Day22() : Solver(2024, 22)
                  .MixAndPrune(x => x * 2048);
 }
 
-internal static class Day22Extensions
+file static class Extensions
 {
     internal static long MixAndPrune(this long secret, Func<long, long> step) => (secret ^ step(secret)) % 16777216;
 }

@@ -2,17 +2,14 @@
 
 namespace AdventOfCode.Y2024;
 
-internal class Day06() : Solver(2024, 6)
+internal class Day06() : GridSolver(2024, 6)
 {
-    private Position MinPos = new(0, 0);
-    private Position MaxPos = new(0, 0);
+    private record Guard(Position Position, char Direction);
     private static readonly Dictionary<char, char> TurnRight = new() { ['N'] = 'E', ['E'] = 'S', ['S'] = 'W', ['W'] = 'N' };
 
     public override void Run()
     {
         var input = Input.ReadAllLines();
-        MaxPos = new(input[0].Length - 1, input.Length - 1);
-
         var (start, obstacles) = FindStartAndObstacles(input);
         var guard = new Guard(start, 'N');
 
@@ -89,5 +86,3 @@ internal class Day06() : Solver(2024, 6)
         return (start, obstacles);
     }
 }
-
-internal record Guard(Position Position, char Direction);

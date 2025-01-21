@@ -2,6 +2,8 @@
 
 internal class Day24() : Solver(2024, 24)
 {
+    internal record Gate(string LeftWire, string RightWire, string Func, string OutputWire);
+
     public override void Run()
     {
         var input = Input.ReadAsParagraphs();
@@ -97,17 +99,15 @@ internal class Day24() : Solver(2024, 24)
         }).ToList();
 }
 
-internal record Gate(string LeftWire, string RightWire, string Func, string OutputWire);
-
-internal static class Day25Extensions
+file static class Extensions
 {
-    public static void ApplySwap(this Dictionary<string, Gate> gates, string wire1, string wire2, List<string> swaps)
+    public static void ApplySwap(this Dictionary<string, Day24.Gate> gates, string wire1, string wire2, List<string> swaps)
     {
         swaps.AddRange(wire1, wire2);
         (gates[wire1], gates[wire2]) = (gates[wire2], gates[wire1]);
     }
 
-    public static string FindGate(this Dictionary<string, Gate> gates, string leftWire, string func, string rightWire)
+    public static string FindGate(this Dictionary<string, Day24.Gate> gates, string leftWire, string func, string rightWire)
         => gates.FirstOrDefault(x => (x.Value.LeftWire == leftWire && x.Value.Func == func && x.Value.RightWire == rightWire)
-                                    || (x.Value.LeftWire == rightWire && x.Value.Func == func && x.Value.RightWire == leftWire)).Key;
+                                  || (x.Value.LeftWire == rightWire && x.Value.Func == func && x.Value.RightWire == leftWire)).Key;
 }

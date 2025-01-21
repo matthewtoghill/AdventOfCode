@@ -14,13 +14,12 @@ internal class Day10() : Solver(2024, 10)
 
     private static Dictionary<Position, List<Position>> FindTrailheads(string[] input)
     {
-        Dictionary<Position, List<Position>> trailheads = [];
+        DefaultDictionary<Position, List<Position>> trailheads = new(defaultValue: []);
         var map = input.AsCharMap();
 
         foreach (var (start, _) in map.Where(x => x.Value == '0'))
         {
             Queue<Position> queue = new([start]);
-            trailheads[start] = [];
 
             while (queue.TryDequeue(out var current))
             {

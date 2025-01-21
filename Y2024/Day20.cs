@@ -14,7 +14,7 @@ internal class Day20() : Solver(2024, 20)
     private static int Solve(string[] input, int maxDuration)
     {
         var map = input.AsCharMap();
-        var walls = map.Where(x => x.Value == '#').Select(x => x.Key).ToHashSet();
+        var walls = map.WhereValues(x => x == '#').Keys.ToHashSet();
         var start = map.First(x => x.Value == 'S').Key;
         var end = map.First(x => x.Value == 'E').Key;
 
@@ -35,7 +35,7 @@ internal class Day20() : Solver(2024, 20)
     private static Dictionary<Position, int> StepsFromEnd(Position start, Position end, HashSet<Position> walls)
     {
         PriorityQueue<Position, int> queue = new([(end, 0)]);
-        Dictionary<Position, int> stepsFromEnd = new() { [end] = 0 };
+        DefaultDictionary<Position, int> stepsFromEnd = new(defaultValue: int.MaxValue) { [end] = 0 };
 
         while (queue.TryDequeue(out var current, out var steps))
         {
@@ -44,8 +44,6 @@ internal class Day20() : Solver(2024, 20)
             foreach (var next in current.GetNeighbours())
             {
                 if (walls.Contains(next)) continue;
-
-                stepsFromEnd.TryAdd(next, int.MaxValue);
 
                 if (stepsFromEnd[next] > steps + 1)
                 {

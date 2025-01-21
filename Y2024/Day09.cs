@@ -2,6 +2,8 @@
 
 internal class Day09() : Solver(2024, 9)
 {
+    private record File(int Id, int Size);
+
     public override void Run()
     {
         var input = Input.ReadAll();
@@ -123,5 +125,3 @@ internal class Day09() : Solver(2024, 9)
 
     private static long CalculateChecksum(int[] disk) => disk.Sum((value, i) => (long)i * value);
 }
-
-internal record File(int Id, int Size);

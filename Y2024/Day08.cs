@@ -4,15 +4,7 @@ namespace AdventOfCode.Y2024;
 
 internal class Day08() : GridSolver(2024, 8)
 {
-    //private string[] _input { get; init; }
-    //private Position MinPos { get; init; } = new(0, 0);
-    //private Position MaxPos { get; init; }
-
-    //public Day08() : base(2024, 8)
-    //{
-    //    _input = Input.ReadAllLines();
-    //    MaxPos = new(_input[0].Length - 1, _input.Length - 1);
-    //}
+    private record Antenna(Position Position, char Frequency);
 
     public override void Run()
     {
@@ -91,5 +83,3 @@ internal class Day08() : GridSolver(2024, 8)
         return positions;
     }
 }
-
-internal record Antenna(Position Position, char Frequency);

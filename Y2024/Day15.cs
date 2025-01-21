@@ -52,7 +52,7 @@ internal class Day15() : Solver(2024, 15)
             }
         }
 
-        return map.Where(x => x.Value == 'O').Select(x => x.Key).Sum(x => (x.Row * 100) + x.Col);
+        return map.WhereValues(x => x == 'O').Keys.Sum(x => (x.Row * 100) + x.Col);
     }
 
     private static int Part2(string input)
@@ -113,7 +113,7 @@ internal class Day15() : Solver(2024, 15)
             }
         }
 
-        return map.Where(x => x.Value == '[').Select(x => x.Key).Sum(x => (x.Row * 100) + x.Col);
+        return map.WhereValues(x => x == '[').Keys.Sum(x => (x.Row * 100) + x.Col);
     }
 
     private static (Dictionary<Position, char>, string) ParseInput(string[] input)

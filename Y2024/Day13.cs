@@ -2,11 +2,13 @@
 
 internal class Day13() : Solver(2024, 13)
 {
+    private record XY(long X, long Y);
+
     public override void Run()
     {
         var input = Input.ReadAsParagraphs();
         Part1Solution = Solve(input);
-        Part2Solution = Solve(input, 10000000000000);
+        Part2Solution = Solve(input, 10_000_000_000_000);
     }
 
     private static long Solve(string[] input, long correction = 0)
@@ -41,5 +43,3 @@ internal class Day13() : Solver(2024, 13)
         return (pressA * 3) + pressB;
     }
 }
-
-internal record XY(long X, long Y);

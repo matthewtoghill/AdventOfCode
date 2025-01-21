@@ -4,6 +4,8 @@ namespace AdventOfCode.Y2024;
 
 internal class Day16() : Solver(2024, 16)
 {
+    private record ReindeerState(Position Position, char Direction, int Score, HashSet<Position> Route);
+
     private static readonly Dictionary<char, char> TurnRight = new() { ['N'] = 'E', ['E'] = 'S', ['S'] = 'W', ['W'] = 'N' };
     private static readonly Dictionary<char, char> TurnLeft = new() { ['N'] = 'W', ['W'] = 'S', ['S'] = 'E', ['E'] = 'N' };
 
@@ -23,7 +25,7 @@ internal class Day16() : Solver(2024, 16)
 
         var lowestScore = int.MaxValue;
         List<ReindeerState> endStates = [];
-        Dictionary<(Position, char), int> minScores = [];
+        DefaultDictionary<(Position, char), int> minScores = new(defaultValue: int.MaxValue);
 
         while (queue.TryDequeue(out var current, out var score))
         {
@@ -46,9 +48,6 @@ internal class Day16() : Solver(2024, 16)
 
                 if (map.GetValueOrDefault(next) == '#') return;
 
-                if (!minScores.ContainsKey((next, direction)))
-                    minScores[(next, direction)] = int.MaxValue;
-
                 if (minScores[(next, direction)] >= nextScore)
                 {
                     minScores[(next, direction)] = nextScore;
@@ -63,5 +62,3 @@ internal class Day16() : Solver(2024, 16)
         return (lowestScore, tilesOnBestPaths);
     }
 }
-
-internal record ReindeerState(Position Position, char Direction, int Score, HashSet<Position> Route);
