@@ -34,13 +34,18 @@ internal class Day15() : Solver(2022, 15)
 
         // count the number of points along the row that are visible to sensors
         var visibleCount = 0;
+
         for (int x = minX; x <= maxX; x++)
+        {
             foreach (var (start, end) in sensorRanges)
+            {
                 if (x.IsBetween(start, end))
                 {
                     visibleCount++;
                     break;
                 }
+            }
+        }
 
         return visibleCount - beaconsOnRow;
     }
