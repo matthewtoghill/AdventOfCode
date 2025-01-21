@@ -88,7 +88,7 @@ internal class Day14() : Solver(2023, 14)
     }
 
     private static int CalculateLoad(Dictionary<Position, char> rocks, int maxRow)
-        => rocks.Where(rock => rock.Value == 'O')
+        => rocks.WhereValues(x => x == 'O')
                 .Select(rock => rock.Key.Row)
                 .GetFrequencies()
                 .Sum(row => (maxRow + 1 - row.Key) * row.Value);

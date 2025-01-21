@@ -25,7 +25,7 @@ internal class Day23() : GridSolver(2023, 23)
 
     private Dictionary<Position, List<State>> BuildGraph(HashSet<Position> crossroads, bool includeSlopes)
     {
-        var graph = new Dictionary<Position, List<State>>();
+        Dictionary<Position, List<State>> graph = [];
 
         foreach (var start in crossroads)
         {

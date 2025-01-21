@@ -15,12 +15,11 @@ internal class Day17() : GridSolver(2023, 17)
     private int Solve(State[] startStates, int minRunLength, int maxRunLength)
     {
         var priorityQueue = new PriorityQueue<State, int>();
-        var distances = new Dictionary<State, int>();
+        var distances = new DefaultDictionary<State, int>(defaultValue: 0);
 
         foreach (var item in startStates)
         {
             priorityQueue.Enqueue(item, 0);
-            distances[item] = 0;
         }
 
         while (priorityQueue.TryDequeue(out var current, out var currentCost))

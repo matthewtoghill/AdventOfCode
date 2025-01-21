@@ -87,9 +87,7 @@ internal class Day20() : Solver(2023, 20)
             var type = ModuleType.None;
             if (line.StartsWith('%')) type = ModuleType.FlipFlop;
             if (line.StartsWith('&')) type = ModuleType.Conjunction;
-            var module = new Module(split[0], type, split.Skip(1).ToHashSet());
-
-            modules[split[0]] = module;
+            modules[split[0]] = new Module(split[0], type, split.Skip(1).ToHashSet());
         }
 
         // Set the Conjunction Modules initial memory values
