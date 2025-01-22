@@ -65,4 +65,10 @@ public static class NumericExtensions
 
         return current;
     }
+
+    public static int Mode(this IEnumerable<int> items)=> items.GetFrequencies().MaxBy(x => x.Value).Key;
+    public static long Mode(this IEnumerable<long> items) => items.GetFrequencies().MaxBy(x => x.Value).Key;
+
+    public static int Median(this IEnumerable<int> items) => items.Order().ElementAt(items.Count() / 2);
+    public static long Median(this IEnumerable<long> items) => items.Order().ElementAt(items.Count() / 2);
 }
