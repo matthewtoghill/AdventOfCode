@@ -1,8 +1,25 @@
 ﻿namespace AdventOfCode.Tools;
 
-internal class DefaultDictionary<TKey, TValue>(TValue defaultValue = default!) : Dictionary<TKey, TValue> where TKey : notnull
+public class DefaultDictionary<TKey, TValue> : Dictionary<TKey, TValue> where TKey : notnull
 {
-    public TValue DefaultValue { get; } = defaultValue;
+    private readonly Func<TValue> _defaultValueFactory;
+
+    public DefaultDictionary()
+    {
+        _defaultValueFactory = () => default!;
+    }
+
+    public DefaultDictionary(TValue defaultValue)
+    {
+        _defaultValueFactory = () => defaultValue is ICloneable cloneable
+            ? (TValue)cloneable.Clone()
+            : defaultValue;
+    }
+
+    public DefaultDictionary(Func<TValue> defaultValueFactory)
+    {
+        _defaultValueFactory = defaultValueFactory ?? throw new ArgumentNullException(nameof(defaultValueFactory));
+    }
 
     public new TValue this[TKey key]
     {
@@ -11,7 +28,7 @@ internal class DefaultDictionary<TKey, TValue>(TValue defaultValue = default!) :
             if (TryGetValue(key, out var val))
                 return val;
 
-            val = DefaultValue;
+            val = _defaultValueFactory();
             Add(key, val);
 
             return val;
