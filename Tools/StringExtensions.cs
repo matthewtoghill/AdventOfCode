@@ -173,6 +173,15 @@ public static partial class StringExtensions
         return input.Replace(subString, "");
     }
 
+    public static string StripOut(this string input, params string[] words)
+    {
+        foreach (var word in words)
+        {
+            input = input.Replace(word, "");
+        }
+        return input;
+    }
+
     public static string SortString(string input)
     {
         char[] chars = input.ToCharArray();
