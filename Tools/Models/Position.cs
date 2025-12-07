@@ -39,10 +39,21 @@ public readonly struct Position
     public Position Rotate(RotationDegrees degrees = RotationDegrees.Clockwise_90)
         => degrees switch
         {
-            RotationDegrees.Clockwise_90 or RotationDegrees.CounterClockwise_270 => new(Y, -X),
-            RotationDegrees.Clockwise_270 or RotationDegrees.CounterClockwise_90 => new(-Y, X),
+            RotationDegrees.Clockwise_90 or RotationDegrees.CounterClockwise_270 => new(-Y, X),
+            RotationDegrees.Clockwise_270 or RotationDegrees.CounterClockwise_90 => new(Y, -X),
             RotationDegrees._180 => new(-X, -Y),
-            _ => new(X, Y),
+            _ => this,
+        };
+
+    public Position Rotate(char direction, int degrees)
+        => (direction, degrees) switch
+        {
+            ('R', 90) => Rotate(RotationDegrees.Clockwise_90),
+            ('R', 270) => Rotate(RotationDegrees.Clockwise_270),
+            (_, 180) => Rotate(RotationDegrees._180),
+            ('L', 90) => Rotate(RotationDegrees.CounterClockwise_90),
+            ('L', 270) => Rotate(RotationDegrees.CounterClockwise_270),
+            _ => this,
         };
 
     public bool Equals(Position other) => X == other.X && Y == other.Y;
