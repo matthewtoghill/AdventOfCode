@@ -155,9 +155,7 @@ public static partial class StringExtensions
     }
 
     public static string StripOut(this string input, char character)
-    {
-        return input.Replace(character.ToString(), "");
-    }
+        => input.Replace(character.ToString(), "");
 
     public static string StripOut(this string input, params char[] chars)
     {
@@ -169,9 +167,7 @@ public static partial class StringExtensions
     }
 
     public static string StripOut(this string input, string subString)
-    {
-        return input.Replace(subString, "");
-    }
+        => input.Replace(subString, "");
 
     public static string StripOut(this string input, params string[] words)
     {

@@ -7,6 +7,8 @@ public readonly struct Position
     public int Row => Y;
     public int Col => X;
 
+    public static readonly Position Default = new(0, 0);
+
     public Position(int x, int y) => (X, Y) = (x, y);
     public Position((int x, int y) pos) => (X, Y) = (pos.x, pos.y);
 
@@ -18,7 +20,7 @@ public readonly struct Position
             'd' or 'v' or 's' => new(X, Y + distance),
             'l' or '<' or 'w' => new(X - distance, Y),
             'r' or '>' or 'e' => new(X + distance, Y),
-            _ => new(X, Y),
+            _ => this,
         };
     }
 
@@ -30,7 +32,7 @@ public readonly struct Position
             'd' or 'v' or 's' => new(X, Y - distance),
             'l' or '<' or 'w' => new(X + distance, Y),
             'r' or '>' or 'e' => new(X - distance, Y),
-            _ => new(X, Y),
+            _ => this,
         };
     }
 
