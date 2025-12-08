@@ -37,6 +37,8 @@ public readonly struct Position3D
     public static Position3D operator /(Position3D a, Position3D b) => new(a.X / b.X, b.Y / b.Y, a.Z / b.Z);
     public static Position3D operator /(Position3D a, (int X, int Y, int Z) b) => new(a.X / b.X, b.Y / b.Y, a.Z / b.Z);
 
+    public double DirectDistance(Position3D other) => (X, Y, Z).DirectDistance((other.X, other.Y, other.Z));
+
     public bool IsBetween(Position3D min, Position3D max)
         => min.X <= X && X <= max.X
         && min.Y <= Y && Y <= max.Y

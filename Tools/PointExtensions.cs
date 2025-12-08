@@ -12,6 +12,12 @@ public static class PointExtensions
     public static double DirectDistance(this (int X, int Y) startPos, (int X, int Y) endPos) => Math.Sqrt(Math.Pow(endPos.X - startPos.X, 2) + Math.Pow(endPos.Y - startPos.Y, 2));
     public static double DirectDistance(this (long X, long Y) startPos, (long X, long Y) endPos) => Math.Sqrt(Math.Pow(endPos.X - startPos.X, 2) + Math.Pow(endPos.Y - startPos.Y, 2));
 
+    public static double DirectDistance(this (int X, int Y, int Z) startPos, (int X, int Y, int Z) endPos)
+        => Math.Sqrt(Math.Pow(endPos.X - startPos.X, 2) + Math.Pow(endPos.Y - startPos.Y, 2) + Math.Pow(endPos.Z - startPos.Z, 2));
+
+    public static double DirectDistance(this (long X, long Y, long Z) startPos, (long X, long Y, long Z) endPos)
+        => Math.Sqrt(Math.Pow(endPos.X - startPos.X, 2) + Math.Pow(endPos.Y - startPos.Y, 2) + Math.Pow(endPos.Z - startPos.Z, 2));
+
     public static T ChessDistance<T>(this (T X, T Y) startPos, (T X, T Y) endPos) where T : INumber<T>
         => T.Max(T.Abs(startPos.X - endPos.X), T.Abs(startPos.Y - endPos.Y));
 
