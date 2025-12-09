@@ -44,7 +44,7 @@ internal class Day08() : Solver(2025, 8)
     }
 
     private static List<(Position3D BoxA, Position3D BoxB, double Distance)> GetSortedBoxDistances(List<Position3D> input)
-        => input.SelectPairwise((a, b) => (a, b, a.DirectDistance(b)))
+        => input.SelectAllPairs((a, b) => (a, b, a.DirectDistance(b)))
                 .Select(x => (BoxA: x.a, BoxB: x.b, Distance: x.Item3))
                 .OrderBy(x => x.Distance)
                 .ToList();

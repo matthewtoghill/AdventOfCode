@@ -17,7 +17,7 @@ public static class EnumerableExtensions
             action(item, index++);
     }
 
-    public static IEnumerable<bool> CompareAll<T>(this IEnumerable<T> items, Func<T, T, bool> predicate)
+    public static IEnumerable<bool> CompareAllPairs<T>(this IEnumerable<T> items, Func<T, T, bool> predicate)
     {
         var itemArray = items.ToArray();
         for (int i = 0; i < itemArray.Length; i++)
@@ -25,7 +25,7 @@ public static class EnumerableExtensions
                 yield return predicate(itemArray[i], itemArray[j]);
     }
 
-    public static IEnumerable<TResult> SelectPairwise<T, TResult>(this IEnumerable<T> items, Func<T, T, TResult> selector)
+    public static IEnumerable<TResult> SelectAllPairs<T, TResult>(this IEnumerable<T> items, Func<T, T, TResult> selector)
     {
         var itemArray = items.ToArray();
         for (int i = 0; i < itemArray.Length; i++)

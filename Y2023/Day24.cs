@@ -17,7 +17,7 @@ internal class Day24() : AdventOfCode.Lib.Solver(2023, 24)
         const long minBound = 200_000_000_000_000;
         const long maxBound = 400_000_000_000_000;
 
-        return hailstones.CompareAll((h1, h2) => HailstoneFuturePathsCross(h1, h2, minBound, maxBound)).Count(x => x);
+        return hailstones.CompareAllPairs((h1, h2) => HailstoneFuturePathsCross(h1, h2, minBound, maxBound)).Count(x => x);
     }
 
     // Uses Z3 Solver: https://github.com/Z3Prover/z3
