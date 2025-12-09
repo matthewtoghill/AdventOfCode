@@ -21,6 +21,14 @@ public static class PositionExtensions
         return positions;
     }
 
+    public static int CalculateArea(this Position position, Position other, bool includeBorder = true)
+        => (Math.Abs(position.X - other.X) + (includeBorder ? 1 : 0))
+         * (Math.Abs(position.Y - other.Y) + (includeBorder ? 1 : 0));
+
+    public static long CalculateAreaLong(this Position position, Position other, bool includeBorder = true)
+        => (Math.Abs((long)position.X - (long)other.X) + (includeBorder ? 1 : 0))
+         * (Math.Abs((long)position.Y - (long)other.Y) + (includeBorder ? 1 : 0));
+
     public static int CalculateArea(this List<Position> positions)
     {
         var result = 0;
@@ -31,6 +39,40 @@ public static class PositionExtensions
         }
 
         return Math.Abs(result);
+    }
+
+    public static HashSet<Position> CreateBox(this Position cornerA, Position cornerB)
+    {
+        var box = new HashSet<Position>();
+        var topLeft = new Position(Math.Min(cornerA.X, cornerB.X), Math.Min(cornerA.Y, cornerB.Y));
+        var bottomRight = new Position(Math.Max(cornerA.X, cornerB.X), Math.Max(cornerA.Y, cornerB.Y));
+
+        for (int x = topLeft.X; x <= bottomRight.X; x++)
+            for (int y = topLeft.Y; y <= bottomRight.Y; y++)
+                box.Add(new Position(x, y));
+
+        return box;
+    }
+
+    public static HashSet<Position> CreateBoxOutline(this Position cornerA, Position cornerB)
+    {
+        var box = new HashSet<Position>();
+        var topLeft = new Position(Math.Min(cornerA.X, cornerB.X), Math.Min(cornerA.Y, cornerB.Y));
+        var bottomRight = new Position(Math.Max(cornerA.X, cornerB.X), Math.Max(cornerA.Y, cornerB.Y));
+
+        for (int x = topLeft.X; x <= bottomRight.X; x++)
+        {
+            box.Add(new Position(x, topLeft.Y));
+            box.Add(new Position(x, bottomRight.Y));
+        }
+
+        for (int y = topLeft.Y; y <= bottomRight.Y; y++)
+        {
+            box.Add(new Position(topLeft.X, y));
+            box.Add(new Position(bottomRight.X, y));
+        }
+
+        return box;
     }
 
     public static int CountPositionsInsideArea(this List<Position> positions)
@@ -77,6 +119,24 @@ public static class PositionExtensions
             {
                 sb.Append(map[new Position(x, y)]);
             }
+
+            Console.WriteLine(sb.ToString());
+        }
+    }
+
+    public static void PrintGrid(this HashSet<Position> positions, int gridWidth, int gridHeight)
+    {
+        for (int y = 0; y < gridHeight; y++)
+        {
+            var sb = new StringBuilder();
+            for (int x = 0; x < gridWidth; x++)
+            {
+                if (positions.Contains(new(x, y)))
+                    sb.Append('#');
+                else
+                    sb.Append('.');
+            }
+
             Console.WriteLine(sb.ToString());
         }
     }

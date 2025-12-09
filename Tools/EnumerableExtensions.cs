@@ -33,6 +33,14 @@ public static class EnumerableExtensions
                 yield return selector(itemArray[i], itemArray[j]);
     }
 
+    public static void IterateAllPairs<T>(this IEnumerable<T> items, Action<T, T> action)
+    {
+        var itemArray = items.ToArray();
+        for (int i = 0; i < itemArray.Length; i++)
+            for (int j = i + 1; j < itemArray.Length; j++)
+                action(itemArray[i], itemArray[j]);
+    }
+
     public static IEnumerable<T> ApplyEach<T>(this IEnumerable<T> items, Action<T> action)
     {
         foreach (T item in items)
