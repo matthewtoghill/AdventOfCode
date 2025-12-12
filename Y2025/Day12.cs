@@ -6,7 +6,7 @@ internal class Day12() : Solver(2025, 12)
     {
         var (presents, regions) = ParseInput(Input.ReadAsParagraphs());
 
-        Part1Solution = regions.Count(region => region.Requirements.Zip(presents).Sum(x => x.First * x.Second) <= region.Area);
+        Part1Solution = regions.Count(region => region.Requirements.Zip(presents, (r, p) => r * p).Sum() <= region.Area);
         Part2Solution = "Happy Christmas!";
     }
 
